@@ -662,6 +662,7 @@ void ListSingleCellTechnologies() {
   << "SmartSeq3        Smart-seq3" << endl
   << "SPLiT-seq        SPLiT-seq" << endl
   << "STORM-seq        STORM-seq" << endl
+  << "VASA-seq         VASA-seq" << endl
   << "SureCell         SureCell for ddSEQ" << endl
   << "Visium           10x Visium Spatial Transcriptomics" << endl
   << endl;
@@ -1418,6 +1419,12 @@ bool CheckOptionsBus(ProgramOptions& opt) {
         busopt.seq.push_back(BUSOptionSubstr(1,14,0));
         busopt.paired = true;
         strand = ProgramOptions::StrandType::RF;
+      } else if (opt.technology == "VASA-SEQ") {
+        busopt.nfiles = 2;
+        busopt.bc.push_back(BUSOptionSubstr(0,6,14));
+        busopt.umi.push_back(BUSOptionSubstr(0,0,6));
+        busopt.seq.push_back(BUSOptionSubstr(1,0,0));
+        strand = ProgramOptions::StrandType::FR;
       } else {
         vector<int> files;
         vector<BUSOptionSubstr> values;
